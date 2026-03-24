@@ -20,3 +20,4 @@ public class Romain {
 	private String prendreParole() {
 		return "Le Romain" + nom +":";
 	}
+}
