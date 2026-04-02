@@ -1,5 +1,7 @@
 package test_fonctionel;
 
+import Objets.Chaudron;
+import personnages.Druide;
 import personnages.Gaulois;
 import personnages.Romain;
 
@@ -19,6 +21,18 @@ public class TestGaulois {
 		
 		for (int i=0; i<3; i++) {
 			asterix.frapper( minus);
+		}
+		
+		Romain brutus = new Romain("Brutux", 14);
+		
+		Chaudron chaudron = new Chaudron(0, 0);
+		Druide panoramix = new Druide("Panoramix",2 ,chaudron );
+		panoramix.fabriquerPotion(4, 3);
+		panoramix.booster(obelix);
+		panoramix.booster(asterix);
+		
+		for(int i=0; i<3;i++) {
+			asterix.frapper(brutus);
 		}
 	}
 }
