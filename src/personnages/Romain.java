@@ -26,9 +26,22 @@ public class Romain {
 		return this.force>=0;
 	}
 	
+	private boolean isPreconditionVerified(int forceCoup) {
+		return forceCoup >=0;
+	}
+	
+	private boolean isPostconditionVerified(int forceAvant) {
+		return forceAvant > force;
+	}
+	
+	
 	public void recevoirCoup (int forceCoup) {
 		
+		assert isPreconditionVerified(forceCoup) : "la force du coup recu est négative !";
+		
+		int forceAvant = this.force;
 		force -= forceCoup;
+		
 		if (this.force < 1 ){
 			this.force = 0;
 			parler ("J'abandonne !");
@@ -38,6 +51,7 @@ public class Romain {
 		}	
 	
 	assert isInvariantVeridied() : "la force est négative !";
+	assert isPostconditionVerified(forceAvant) : "la force n'a pas diminué";
 	}
 	
 	
