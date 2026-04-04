@@ -46,7 +46,7 @@ public class Village {
 		System.out.println("Dans le village " + "\""+ nom + "\""+ " du chef " + chef + " vivent les légendaires gaulois :");
 		for (int i=0; i<= nbVillageois; i++) {
 			if(villageois[i]!=null) {
-				System.out.println("-"+villageois[i]);
+				System.out.println("- "+villageois[i]);
 			}
 		}
 	}
@@ -68,5 +68,18 @@ public class Village {
 		System.out.println(gaulois);
 		
 		village.afficherVillageois();
+		
+		Gaulois obelix= new Gaulois("Obélix", 25);
+		village.ajouterVillageois(obelix);
+		
+		
+		village.afficherVillageois();
+		
+		Gaulois doublePolemix = new Gaulois("Doublepolémix",4);
+		
+		abraracourcix.sePresenter();
+		asterix.sePresenter();
+		doublePolemix.sePresenter();
+		
 	}
 	}

@@ -47,6 +47,20 @@ public class Gaulois {
 		
 	}
 	
+	public void sePresenter() {
+		if (village== null) {
+			System.out.println(prendreParole()+"\"Bonjour,je m'appelle " + nom + ". Je voyage de villages en villages.\"");
+		}else {
+			if(this==village.getChef()) {
+				System.out.println(prendreParole() + "\"Bonjour, je m'appelle " + nom + ". Je suis le chef du village : " + village.getNom() + ".\"");
+			}else {
+				System.out.println(prendreParole()+"\"Bonjour,je m'appelle " + nom + ". J'habite le village : "+ village.getNom()+".\"");
+			}
+			
+		}
+	}
+	
+	
 	public static void main(String[] args) {
 		
 		Gaulois asterix = new Gaulois("Astérix", 8);
