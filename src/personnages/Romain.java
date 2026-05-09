@@ -86,42 +86,51 @@ public class Romain {
 	}
 		
 	public Equipement[] recevoirCoup(int forceCoup) {
-		Equipement[] equipementEjecte = null;
-		forceCoup = calculerResistanceEquipement(forceCoup);
-		force -= forceCoup;
-		switch (force) {
-			case 0:
-				parler("Aïe");  
-			    break;
-			default:
-				 equipementEjecte = ejecterEquipement();
-				 parler("J'abandonne..."); 
-				 break;
-			    
-		}
-		return equipementEjecte;
+	    Equipement[] equipementEjecte = null;
+	    forceCoup = calculerResistanceEquipement(forceCoup);
+	    
+	    if (forceCoup == 0) {
+	        equipementEjecte = ejecterEquipement();
+	        parler("J'abandonne...");
+	        return equipementEjecte;
+	    }
+	    
+	    force -= forceCoup;
+	    switch (force) {
+	        case 0:
+	            equipementEjecte = ejecterEquipement();
+	            parler("J'abandonne...");
+	            break;
+	        default:
+	            parler("Aïe");
+	            break;
+	    }
+	    return equipementEjecte;
 	}
 		
 	private int calculerResistanceEquipement(int forceCoup) {
-	    texte = "Ma force est de " + this.force + ", et la force du coup est de " + forceCoup;
+	    int forceCoupOriginale = forceCoup;  // ← sauvegarder ici !
+	    texte = "Ma force est de " + this.force + ", et la force du coup est de " + forceCoupOriginale;
 	    int resistanceEquipement = 0;
 	    if (nbEquipement != 0) {
 	        texte += "\nMais heureusement, grace à mon équipement sa force est diminué de ";
-	        for (int i = 0; i < nbEquipement;i++) {
-	            if ((equipements[i] != null && equipements[i].equals(Equipement.BOUCLIER)) ) {
+	        for (int i = 0; i < nbEquipement; i++) {
+	            if (equipements[i] != null && equipements[i].equals(Equipement.BOUCLIER)) {
 	                resistanceEquipement += 8;
 	            } else {
-	                //System.out.println("Equipement casque");
 	                resistanceEquipement += 5;
 	            }
 	        }
-	        texte += resistanceEquipement + "!";
+	        forceCoup -= resistanceEquipement;
+	        if (forceCoup < 0) {
+	            forceCoup = 0;
+	            texte = "Ma force est de " + this.force + ", et la force du coup est de " + forceCoupOriginale;
+	            texte += "\nMais heureusement, grace à mon équipement sa force a été complètement absorbée.";
+	        } else {
+	            texte += resistanceEquipement + "!";
+	        }
 	    }
 	    parler(texte);
-	    forceCoup -= resistanceEquipement;
-	    if (forceCoup < 0) {
-	        forceCoup = 0;  
-	    }
 	    return forceCoup;
 	}
 		
